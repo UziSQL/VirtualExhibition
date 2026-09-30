@@ -1,13 +1,13 @@
 /* Шрифты поставляются локально, включая кириллицу и казахские буквы. */
 :root {
   font-family: "Golos Text Variable", Arial, sans-serif;
-  color: #292929;
+  color: #292b2d;
   background: #fafaf7;
   font-synthesis: none;
   font-weight: 400;
-  --ink: #292929;
+  --ink: #292b2d;
   --teal: #8c6c29;
-  --gold: #c9a44c;
+  --gold: #b99a59;
   --cream: #fafaf7;
   --line: #e5e2da;
 }
@@ -25,12 +25,12 @@
   justify-content: center;
   gap: 8px 16px;
   padding: 14px 18px;
-  border: 1px solid #c9a44c;
+  border: 1px solid #b99a59;
   border-radius: 6px;
   background: #ffffff;
-  color: #292929;
+  color: #292b2d;
   font-size: 12px;
-  box-shadow: 0 6px 24px #29292918;
+  box-shadow: 0 6px 24px #292b2d18;
 }
 .image-load-notice button {
   text-decoration: underline;
@@ -177,7 +177,7 @@ button {
   color: #ddd5c4;
 }
 .passport-button {
-  background: #292929;
+  background: #292b2d;
   color: #fffaf0;
   border-radius: 5px;
   display: flex;
@@ -284,7 +284,7 @@ button {
   line-height: 1.04;
   letter-spacing: -5px;
   margin: 14px 0 21px;
-  color: #292929;
+  color: #292b2d;
 }
 .welcome h1 > span {
   display: block;
@@ -317,9 +317,9 @@ button {
   font-weight: 450;
 }
 .primary {
-  background: #292929;
+  background: #292b2d;
   color: #fffbed;
-  border: 1px solid #292929;
+  border: 1px solid #292b2d;
 }
 .secondary {
   border: 1px solid #ddd5c4;
@@ -364,7 +364,7 @@ button {
   text-align: left;
 }
 .catalog-link:hover {
-  color: #292929;
+  color: #292b2d;
 }
 .scene-caption {
   position: absolute;
@@ -375,7 +375,7 @@ button {
   display: flex;
   align-items: center;
   gap: 7px;
-  color: #292929;
+  color: #292b2d;
 }
 .live-dot {
   display: inline-block;
@@ -422,7 +422,7 @@ button {
   background: #f5f4ef;
 }
 .viewer-tools .icon-button {
-  box-shadow: 0 2px 9px #29292910;
+  box-shadow: 0 2px 9px #292b2d10;
 }
 .rooms-bar {
   background: #f5f3eb;
@@ -488,7 +488,7 @@ button {
   border-color: #f5f4ef;
 }
 .room-button.current .room-number {
-  background: #292929;
+  background: #292b2d;
   color: #f6edce;
   border-color: transparent;
 }
@@ -529,7 +529,7 @@ button {
   border: 1px solid #f5f4ef;
   padding: 13px 22px;
   border-radius: 5px;
-  box-shadow: 0 3px 20px #29292910;
+  box-shadow: 0 3px 20px #292b2d10;
   max-width: calc(100% - 100px);
 }
 .location-tag h2 {
@@ -548,11 +548,11 @@ button {
   width: 7px;
   height: 7px;
   border: 1px solid white;
-  background: #29292990;
+  background: #292b2d90;
   border-radius: 50%;
   transform: translate(-50%, -50%);
   pointer-events: none;
-  box-shadow: 0 0 2px #292929;
+  box-shadow: 0 0 2px #292b2d;
 }
 .crosshair.has-target {
   width: 19px;
@@ -570,10 +570,10 @@ button {
   align-items: center;
   gap: 12px;
   border-radius: 6px;
-  background: #292929ed;
+  background: #292b2ded;
   color: #f8f5e9;
   font-size: 13px;
-  box-shadow: 0 6px 22px #29292920;
+  box-shadow: 0 6px 22px #292b2d20;
 }
 .interaction-hint kbd {
   border: 1px solid #62625d;
@@ -609,7 +609,7 @@ button {
   padding: 18px 24px;
   display: flex;
   flex-direction: column;
-  box-shadow: 0 12px 50px #2929291a;
+  box-shadow: 0 12px 50px #292b2d1a;
   backdrop-filter: blur(10px);
   overflow: auto;
 }
@@ -683,7 +683,7 @@ button {
   border: 1px solid #f5f4ef;
 }
 .tour-actions button:last-child {
-  background: #292929;
+  background: #292b2d;
   color: #fff8e9;
 }
 .modal {
@@ -701,7 +701,7 @@ button {
   width: min(1100px, calc(100% - 32px));
 }
 .modal::backdrop {
-  background: #2929295c;
+  background: #292b2d5c;
   backdrop-filter: blur(7px);
 }
 .modal-header {
@@ -751,9 +751,9 @@ button {
   min-height: 37px;
 }
 .filter-row button.active {
-  background: #292929;
+  background: #292b2d;
   color: #fcf7e9;
-  border-color: #292929;
+  border-color: #292b2d;
 }
 .catalog-grid {
   display: grid;
@@ -773,7 +773,7 @@ button {
 }
 .catalog-card:hover {
   transform: translateY(-3px);
-  box-shadow: 0 7px 17px #29292910;
+  box-shadow: 0 7px 17px #292b2d10;
 }
 .catalog-card > div:last-child {
   padding: 18px 18px 24px;
@@ -903,7 +903,7 @@ button {
   color: #62625d;
 }
 .text-button:hover {
-  color: #292929;
+  color: #292b2d;
   text-decoration: underline;
 }
 .back-link {
@@ -924,7 +924,7 @@ button {
 .prose p {
   font-size: 14px;
   line-height: 1.95;
-  color: #292929;
+  color: #292b2d;
   margin-bottom: 18px;
 }
 .fineprint {
@@ -999,7 +999,7 @@ button {
 .answer.correct {
   background: #f5f4ef;
   border-color: #ddd5c4;
-  color: #292929;
+  color: #292b2d;
   opacity: 1;
 }
 .answer.wrong {
@@ -1235,7 +1235,7 @@ button {
   white-space: normal;
 }
 .credits-list .author-name {
-  color: #292929;
+  color: #292b2d;
   font-size: 25px;
   font-weight: 600;
 }
@@ -1257,7 +1257,7 @@ button {
   padding: 12px 16px;
   font-size: 12px;
   line-height: 1.6;
-  color: #292929;
+  color: #292b2d;
   background: #ffffff;
 }
 .model-details {
@@ -1268,7 +1268,7 @@ button {
 .model-details summary {
   cursor: pointer;
   padding: 16px;
-  color: #292929;
+  color: #292b2d;
   font-size: 13px;
 }
 .model-details[open] summary {
@@ -1381,7 +1381,7 @@ button {
   cursor: pointer;
 }
 .quality-options input {
-  accent-color: #292929;
+  accent-color: #292b2d;
   width: 17px;
   height: 17px;
 }
@@ -1420,7 +1420,7 @@ button {
   border: 1px solid #ddd5c4;
   border-radius: 4px;
   background: #fafaf1;
-  color: #292929;
+  color: #292b2d;
   padding: 12px;
   font-size: 12px;
   line-height: 1.6;
@@ -2122,7 +2122,7 @@ button {
   left: 10px;
   padding: 5px 8px;
   border-radius: 3px;
-  background: #292929;
+  background: #292b2d;
   color: #fff6e4;
   font-size: 10px;
 }
@@ -2146,7 +2146,7 @@ button {
     place-items: center;
     touch-action: none;
     pointer-events: auto;
-    box-shadow: 0 3px 20px #29292920;
+    box-shadow: 0 3px 20px #292b2d20;
   }
   .joystick > span {
     display: grid;
@@ -2182,7 +2182,7 @@ button {
     position: absolute;
     right: 32px;
     bottom: 132px;
-    background: #292929;
+    background: #292b2d;
     color: #fff7df;
     border: 1px solid #ddd5c4;
     border-radius: 25px;
@@ -2255,7 +2255,7 @@ button {
 }
 .hall-title-primary {
   display: block;
-  color: #292929;
+  color: #292b2d;
   font-size: var(--hall-size, 20px);
   text-wrap: pretty;
 }
@@ -2295,7 +2295,7 @@ button {
   color: #806125;
 }
 .room-button.current {
-  border-color: #c9a44c;
+  border-color: #b99a59;
   background: #fffdf5;
 }
 .rooms-bar {
@@ -2340,8 +2340,8 @@ button {
 }
 .filter-row button.active {
   background: #fff9e8;
-  border-color: #c9a44c;
-  color: #292929;
+  border-color: #b99a59;
+  color: #292b2d;
 }
 .catalog-card .hall-title {
   --hall-size: 18px;
@@ -2378,7 +2378,7 @@ button {
     display: flex;
     overflow-x: auto;
     scrollbar-width: thin;
-    scrollbar-color: #c9a44c #f5f3eb;
+    scrollbar-color: #b99a59 #f5f3eb;
     scroll-snap-type: x proximity;
   }
   .museum-stage {

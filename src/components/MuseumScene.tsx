@@ -1,13 +1,7 @@
 import { useEffect, useMemo, useRef } from "react";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import * as THREE from "three";
-import {
-  atrium,
-  exhibits,
-  hallExhibits,
-  halls,
-  type HallId,
-} from "../data/museum";
+import { exhibits, hallExhibits, halls, type HallId } from "../data/museum";
 import { HallSign } from "./HallSign";
 import {
   canStand,
@@ -22,8 +16,9 @@ import {
 import { Dombra, Yurt } from "./Models";
 import { ExhibitPanel } from "./ExhibitPanel";
 import type { ImageStatus } from "./ExhibitPanel";
-import { gallery, GalleryMaterial } from "./GalleryMaterial";
-import { exhibition } from "../data/config";
+import { gallery, GalleryMaterial, GallerySurfaces } from "./GalleryMaterial";
+import { ContactShade } from "./ContactShade";
+import { AtriumBackdrop } from "./AtriumBackdrop";
 export type Navigation = {
   id: number;
   room: HallId | "atrium";
@@ -58,18 +53,20 @@ function Box({
   size,
   color = gallery.wall,
   gold = false,
+  stone = false,
   castShadow = false,
 }: {
   position: [number, number, number];
   size: [number, number, number];
   color?: string;
   gold?: boolean;
+  stone?: boolean;
   castShadow?: boolean;
 }) {
   return (
     <mesh position={position} receiveShadow castShadow={castShadow}>
       <boxGeometry args={size} />
-      <GalleryMaterial color={color} gold={gold} />
+      <GalleryMaterial color={color} gold={gold} stone={stone} />
     </mesh>
   );
 }
@@ -157,38 +154,35 @@ function Architecture({
     <>
       <color attach="background" args={[gallery.wall]} />
       <fog attach="fog" args={[gallery.wall, 40, 75]} />
-      <ambientLight color="#ffffff" intensity={2.2} />
-      <hemisphereLight args={["#ffffff", "#e8e9ed", 0.85]} />
+      <ambientLight color="#ffffff" intensity={0.75} />
+      <hemisphereLight args={["#ffffff", "#dedbd5", 0.5]} />
+      {/* Broad upward fill approximates the light reflected by the pale floor. */}
+      <directionalLight position={[0, -8, 0]} color="#ffffff" intensity={1.1} />
       <directionalLight
-        position={[-7, 8, -9]}
+        position={[7, 7, -8]}
         color="#ffffff"
-        intensity={0.75}
+        intensity={0.45}
       />
       <directionalLight
-        position={[2, 10, 6]}
+        position={[-3, 10, 6]}
         color="#ffffff"
-        intensity={1.1}
+        intensity={1.8}
         castShadow
         shadow-mapSize={[1024, 1024]}
         shadow-camera-left={-16}
         shadow-camera-right={16}
         shadow-camera-top={16}
         shadow-camera-bottom={-16}
-        shadow-bias={-0.001}
-        shadow-normalBias={0.025}
-        shadow-radius={3}
+        shadow-bias={-0.0003}
+        shadow-normalBias={0.015}
+        shadow-radius={4}
+        shadow-intensity={0.7}
+        shadow-autoUpdate={false}
+        shadow-needsUpdate
       />
       <mesh rotation={[-Math.PI / 2, 0, 0]} receiveShadow>
         <planeGeometry args={[26, 24]} />
-        <GalleryMaterial color={gallery.floor} />
-      </mesh>
-      <mesh
-        position={[0, 0.008, 0]}
-        rotation={[-Math.PI / 2, 0, 0]}
-        receiveShadow
-      >
-        <planeGeometry args={[9.6, 23.7]} />
-        <GalleryMaterial color={gallery.floor} />
+        <GalleryMaterial color={gallery.floor} stone />
       </mesh>
       {Array.from({ length: 13 }, (_, i) => (
         <Box
@@ -196,6 +190,7 @@ function Architecture({
           position={[0, 0.012, i * 2 - 12]}
           size={[26, 0.005, 0.017]}
           color={gallery.joint}
+          stone
         />
       ))}
       {Array.from({ length: 13 }, (_, i) => (
@@ -204,34 +199,31 @@ function Architecture({
           position={[i * 2 - 12, 0.012, 0]}
           size={[0.014, 0.005, 24]}
           color={gallery.joint}
+          stone
         />
       ))}
       {[-4.55, 4.55].map((x) => (
         <Box key={x} position={[x, 0.018, 0]} size={[0.045, 0.02, 23.6]} gold />
       ))}
       {walls.map((w, i) => (
-        <Box key={i} position={[w.x, 2.35, w.z]} size={[w.w, 4.7, w.d]} />
+        <group key={i}>
+          <Box position={[w.x, 2.35, w.z]} size={[w.w, 4.7, w.d]} />
+          <ContactShade
+            x={w.x}
+            z={w.z}
+            width={w.w}
+            depth={w.d}
+            opacity={0.19}
+          />
+        </group>
       ))}
       <Box
         position={[0, 3.45, -11.82]}
         size={[9.6, 6.9, 0.12]}
-        color={gallery.wall}
+        color={gallery.accent}
       />
-      <Label
-        text={exhibition.title}
-        sub="ТАРИХ · МӘДЕНИЕТ · БОЛАШАҚ"
-        position={[0, 5.65, -11.73]}
-        width={4.3}
-        accent
-      />
-      <HallSign place={atrium} position={[0, 4.1, -11.73]} width={6.8} />
-      <Label
-        text="25 қазан — Республика күні"
-        sub="Декларация о государственном суверенитете · 1990"
-        position={[0, 2.65, -11.72]}
-        width={4.3}
-        accent
-      />
+      <ContactShade x={0} z={-11.82} width={9.6} depth={0.12} />
+      <AtriumBackdrop />
       {halls.map((h) => (
         <group key={h.id}>
           <Box
@@ -245,24 +237,38 @@ function Architecture({
             size={[8, 0.18, 8]}
             color={gallery.ceiling}
           />
-          <Box position={[h.side * 5, 4, h.z]} size={[0.4, 1.4, 2.6]} />
+          <Box
+            position={[h.side * 5, 4, h.z]}
+            size={[0.4, 1.4, 2.6]}
+            color={gallery.stone}
+            stone
+          />
           {[-1.4, 1.4].map((o) => (
-            <Box
-              key={o}
-              position={[h.side * 4.88, 1.65, h.z + o]}
-              size={[0.32, 3.3, 0.19]}
-              gold
-            />
+            <group key={o}>
+              <Box
+                position={[h.side * 4.88, 1.65, h.z + o]}
+                size={[0.32, 3.3, 0.19]}
+                color={gallery.stone}
+                stone
+              />
+              <Box
+                position={[h.side * 4.7, 1.65, h.z + o]}
+                size={[0.025, 3.3, 0.035]}
+                gold
+              />
+              <ContactShade
+                x={h.side * 4.88}
+                z={h.z + o}
+                width={0.32}
+                depth={0.19}
+                opacity={0.16}
+              />
+            </group>
           ))}
           <HallSign
             place={h}
             position={[h.side * 4.75, 3.97, h.z]}
             rotation={(-h.side * Math.PI) / 2}
-          />
-          <Box
-            position={[h.side * 9, 0.025, h.z]}
-            size={[6.8, 0.018, 6.5]}
-            color={gallery.floor}
           />
           <Box
             position={[h.side * 8.8, 4.61, h.z]}
@@ -288,12 +294,25 @@ function Architecture({
         size={[10, 0.18, 24]}
         color={gallery.ceiling}
       />
-      {/* Атриум: золотой шанырак и белые каменные колонны. */}
+      {/* Stone columns, champagne-gold shanyrak and quiet contact shadows. */}
       {columns.map(({ x, z, w, d }) => (
         <group key={`${x}-${z}`}>
-          <Box position={[x, 3.25, z]} size={[0.42, 6.5, 0.42]} castShadow />
-          <Box position={[x, 0.16, z]} size={[w, 0.3, d]} />
+          <Box
+            position={[x, 3.25, z]}
+            size={[0.42, 6.5, 0.42]}
+            color={gallery.stone}
+            stone
+            castShadow
+          />
+          <Box
+            position={[x, 0.16, z]}
+            size={[w, 0.3, d]}
+            color={gallery.stone}
+            stone
+            castShadow
+          />
           <Box position={[x, 0.32, z]} size={[w, 0.035, d]} gold />
+          <ContactShade x={x} z={z} width={w} depth={d} opacity={0.27} />
         </group>
       ))}
       {[3.45, 2.65, 1.25].map((r) => (
@@ -326,13 +345,21 @@ function Architecture({
           />
         </group>
       ))}
-      <mesh position={[0, 0.16, -2]} receiveShadow>
+      <ContactShade
+        x={0}
+        z={-2}
+        width={3.66}
+        depth={3.66}
+        round
+        opacity={0.28}
+      />
+      <mesh position={[0, 0.16, -2]} receiveShadow castShadow>
         <cylinderGeometry args={[1.75, 1.83, 0.3, 64]} />
-        <GalleryMaterial color={gallery.floor} />
+        <GalleryMaterial color={gallery.stone} stone />
       </mesh>
-      <mesh position={[0, 0.36, -2]} castShadow>
+      <mesh position={[0, 0.36, -2]} castShadow receiveShadow>
         <cylinderGeometry args={[1.55, 1.55, 0.14, 64]} />
-        <GalleryMaterial />
+        <GalleryMaterial color={gallery.stone} stone />
       </mesh>
       <group position={[0, 0.44, -2]}>
         <Yurt scale={1.48} />
@@ -347,7 +374,14 @@ function Architecture({
         <ringGeometry args={[2.25, 2.28, 64]} />
         <GalleryMaterial gold />
       </mesh>
-      <Box position={[-7.1, 0.5, 1.9]} size={[1.25, 1, 1.25]} />
+      <ContactShade x={-7.1} z={1.9} width={1.25} depth={1.25} opacity={0.25} />
+      <Box
+        position={[-7.1, 0.5, 1.9]}
+        size={[1.25, 1, 1.25]}
+        color={gallery.stone}
+        stone
+        castShadow
+      />
       <group position={[-7.1, 2, 1.9]} rotation={[0, Math.PI / 3, 0]}>
         <Dombra />
       </group>
@@ -364,7 +398,7 @@ function Architecture({
         <group key={side} position={[side * 3.6, 0, -9.7]}>
           <mesh position={[0, 0.34, 0]}>
             <cylinderGeometry args={[0.35, 0.24, 0.65, 16]} />
-            <GalleryMaterial />
+            <GalleryMaterial color={gallery.stone} stone />
           </mesh>
           {[0, 1, 2, 3, 4].map((i) => (
             <mesh
@@ -622,16 +656,18 @@ export default function MuseumScene(props: SceneProps) {
         gl.outputColorSpace = THREE.SRGBColorSpace;
         gl.toneMapping = THREE.NeutralToneMapping;
         gl.toneMappingExposure = 1;
-        gl.shadowMap.type = THREE.PCFSoftShadowMap;
+        gl.shadowMap.type = THREE.PCFShadowMap;
       }}
     >
-      <Architecture
-        onOpen={props.onOpen}
-        enabled={props.walking && !props.blocked}
-        imageRetry={props.imageRetry}
-        onImageStatus={props.onImageStatus}
-      />
-      <CameraController {...props} />
+      <GallerySurfaces>
+        <Architecture
+          onOpen={props.onOpen}
+          enabled={props.walking && !props.blocked}
+          imageRetry={props.imageRetry}
+          onImageStatus={props.onImageStatus}
+        />
+        <CameraController {...props} />
+      </GallerySurfaces>
     </Canvas>
   );
 }
