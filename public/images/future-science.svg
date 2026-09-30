@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="640" viewBox="0 0 960 640">
+<title>Учиться и исследовать — авторская иллюстрация</title>
+<defs><linearGradient id="bg" x2="1" y2="1"><stop stop-color="#FFFFFF"/><stop offset="1" stop-color="#F0EFEB"/></linearGradient><pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M40 0H0V40" fill="none" stroke="#C9A44C" stroke-opacity=".12"/></pattern><linearGradient id="paper" y2="1" x2="0"><stop stop-color="#fff9e4"/><stop offset="1" stop-color="#dcdac2"/></linearGradient></defs>
+<rect width="960" height="640" fill="url(#bg)"/><rect width="960" height="640" fill="url(#grid)"/>
+<circle cx="766" cy="160" r="104" fill="#e6bc68" opacity=".16"/><circle cx="766" cy="160" r="78" fill="none" stroke="#eac77e" stroke-width="2"/>
+<g stroke="#eac77e" stroke-width="3" fill="none"><ellipse cx="766" cy="160" rx="42" ry="78"/><path d="M688 160h156M704 116h124M704 204h124"/></g>
+<path d="M65 170c75-110 110 110 185 0s110 110 185 0" fill="none" stroke="#C9A44C" stroke-width="5"/>
+<g fill="#eec37c"><circle cx="91" cy="144" r="8"/><circle cx="227" cy="194" r="8"/><circle cx="383" cy="124" r="8"/></g>
+<g stroke="#C9A44C" stroke-width="2" opacity=".4"><path d="M77 230h348M77 242h210M77 254h276M551 78h70M586 43v70"/></g>
+<path d="M0 500Q480 462 960 502V640H0" fill="#dfba82"/><path d="M0 532Q480 497 960 532" fill="none" stroke="#c49560" stroke-width="5"/>
+<ellipse cx="507" cy="523" rx="150" ry="18" fill="#62625D" opacity=".2"/>
+<g stroke="#292929" stroke-linejoin="round">
+<path d="M451 497h163l20 27H428z" fill="#e7e9db" stroke-width="9"/>
+<path d="M558 489c97-22 79-164 14-191l-31 40c43 19 57 83 8 108" fill="#E7E5DF" stroke-width="16"/>
+<path d="M483 258l47-29 72 114-48 30z" fill="#ebc47d" stroke-width="9"/>
+<path d="M490 251l-19-31 49-30 20 32" fill="#292929" stroke-width="9"/>
+<path d="M536 365l-26 27 18 22 39-32" fill="#e8e8da" stroke-width="8"/>
+<path d="M461 430h112" stroke="#292929" stroke-width="15"/><rect x="481" y="408" width="62" height="11" fill="#C9A44C" stroke-width="3"/>
+<circle cx="585" cy="363" r="18" fill="#eec67f" stroke-width="7"/>
+</g>
+<g transform="translate(77 396)"><path d="M0 37Q81 3 159 38V141Q78 108 0 136Z" fill="url(#paper)"/><path d="M159 38Q241 3 324 37V136Q241 108 159 141Z" fill="url(#paper)"/><path d="M159 39v99M14 152q72-26 145 1 80-27 180-6" fill="none" stroke="#a97e4f" stroke-width="7"/><g stroke="#a19e83" stroke-width="4"><path d="M27 57q54-16 106 2M27 77q54-16 106 2M27 97q54-16 106 2M185 59q58-18 111-1M185 79q58-18 111-1M185 99q58-18 111-1"/></g></g>
+<g transform="translate(730 355)"><path d="M12 0h69M26 0v58l-49 112q-6 20 21 20h98q27 0 19-20L67 58V0" fill="#DAD8CD" fill-opacity=".24" stroke="#AFA99B" stroke-width="7"/><path d="M-5 137h91l20 42H-22z" fill="#C9A44C"/><g fill="#d9f0d4"><circle cx="45" cy="143" r="8"/><circle cx="33" cy="112" r="5"/><circle cx="54" cy="86" r="4"/></g></g>
+<g fill="#f7dfaa"><circle cx="852" cy="322" r="5"/><circle cx="687" cy="280" r="4"/><path d="M139 297h40v4h-40M157 279h4v40"/></g>
+<text x="54" y="600" font-family="Arial,sans-serif" font-size="21" letter-spacing="5" fill="#292929">НАБЛЮДАТЬ · СПРАШИВАТЬ · ОТКРЫВАТЬ</text>
+</svg>

@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="640" viewBox="0 0 960 640">
+<title>Беречь живой мир — авторская иллюстрация</title>
+<defs><linearGradient id="sky" x2="0" y2="1"><stop stop-color="#c7e5dc"/><stop offset="1" stop-color="#fbedd0"/></linearGradient><linearGradient id="water" x2="1" y2="1"><stop stop-color="#257e8d"/><stop offset="1" stop-color="#9bd3cb"/></linearGradient></defs>
+<rect width="960" height="640" fill="url(#sky)"/><circle cx="726" cy="120" r="65" fill="#eebc61"/>
+<g fill="none" stroke="#fff9df" stroke-width="9" stroke-linecap="round"><path d="M75 114h137m-91-21h115M371 73h156m-109-23h59"/></g>
+<path d="M0 336L146 189l70 80 118-173 203 241 146-134 277 180v257H0" fill="#80aea4"/>
+<path d="M261 190l73-94 82 98-50-24-24 25-29-39-31 29zM105 230l41-41 42 48-47-14z" fill="#e8eee0"/>
+<path d="M0 371q147-117 295-5t280-3q129-98 385-28v305H0" fill="#426d59"/>
+<path d="M0 448q201-115 390-9t370-19l200 32v188H0" fill="#9fba77"/>
+<path d="M484 347q-193 39-36 99t-212 95q-119 15-100 99h397q-161-71 36-119t-69-92q-108-40 37-82z" fill="url(#water)"/>
+<g fill="none" stroke="#d7efe0" stroke-width="4" opacity=".65"><path d="M459 369l48 3M449 476l58 4M296 579l94 3M392 549l34 1"/></g>
+<g fill="#234f46"><path d="M40 442l69-147 69 147h-51l43 70H48l40-70zM790 387l42-107 49 107h-35l29 45h-88l28-45zM855 388l46-131 53 131h-37l35 69h-104l36-69z"/></g>
+<g fill="#e2c18c"><path d="M102 508h14v83h-14M829 431h10v58h-10M899 452h11v60h-11"/></g>
+<g transform="translate(636 381)"><path d="M0 154q-31-80 12-86l29 53 18-43q16-20 32-2l-3 48 30-31q30-19 36 6l-53 101H24" fill="#d6a276"/><path d="M35 75V-17" stroke="#254e42" stroke-width="8"/><path d="M34 13Q-30 1-20-54q61 6 54 67" fill="#417d5c"/><path d="M35-3q-8-65 59-83Q100-16 35-3" fill="#65994f"/><path d="M34 15l-35-43M35-5l37-50" fill="none" stroke="#afd095" stroke-width="3"/></g>
+<g stroke="#2f625a" fill="none" stroke-width="4" stroke-linecap="round"><path d="M538 161q17-20 34 0 17-20 34 0M598 204q12-13 24 0 12-13 24 0"/></g>
+<g fill="#f5d69e"><circle cx="187" cy="497" r="5"/><circle cx="200" cy="517" r="4"/><circle cx="58" cy="556" r="5"/><circle cx="808" cy="562" r="4"/><circle cx="853" cy="540" r="6"/></g>
+<path d="M0 596q210-20 378 17t582-13v40H0z" fill="#183f3b"/><text x="54" y="624" font-family="Arial,sans-serif" font-size="20" letter-spacing="4" fill="#e6dfba">ВОДА · ПРИРОДА · ОТВЕТСТВЕННОСТЬ</text>
+</svg>

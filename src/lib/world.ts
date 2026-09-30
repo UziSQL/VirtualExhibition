@@ -15,7 +15,7 @@ for (const side of [-1, 1]) {
 }
 export const obstacles = [
   { x: 0, z: -2, r: 1.75 },
-  { x: -8.6, z: 0, r: 1.05 },
+  { x: -7.1, z: 1.9, r: 1.05 },
   { x: -3.6, z: -9.7, r: 0.35 },
   { x: 3.6, z: -9.7, r: 0.35 },
 ];
@@ -48,7 +48,7 @@ export function roomAt(x: number, z: number): HallId | "atrium" {
 }
 export function hallPoint(id: HallId | "atrium"): Point {
   const h = halls.find((h) => h.id === id);
-  return h ? [h.side * 10, h.z] : [2.8, 8.5];
+  return h ? [h.side * 8.9, h.z] : [2.8, 8.5];
 }
 // Breadth-first search on a walkable grid, using the same collisions as walking.
 export function route(start: Point, end: Point): Point[] {

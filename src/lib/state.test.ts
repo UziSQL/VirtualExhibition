@@ -21,10 +21,10 @@ describe("Паспорт", () => {
     expect(stampedHalls(p)).toEqual(["history"]);
     expect(p.visited).toHaveLength(2);
   });
-  it("Не засчитывает незаполненный регион и сохраняет доступные залы", () => {
+  it("Все шесть залов, включая регион, дают сохраняемые отметки", () => {
     const p = exhibits.reduce((p, e) => visit(p, e.id), emptyProgress());
-    expect(stampedHalls(p)).toHaveLength(5);
-    expect(stampedHalls(p)).not.toContain("region");
+    expect(stampedHalls(p)).toHaveLength(6);
+    expect(stampedHalls(p)).toContain("region");
     expect(parseProgress(JSON.stringify(p))).toEqual(p);
   });
   it("Восстанавливается после повреждённых или устаревших данных", () => {

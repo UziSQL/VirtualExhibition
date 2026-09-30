@@ -57,14 +57,26 @@ export function Modal({
     </dialog>
   );
 }
-export function SafeImage({ exhibit }: { exhibit: Exhibit }) {
+export function SafeImage({
+  exhibit,
+  retryToken = 0,
+  onFailure,
+}: {
+  exhibit: Exhibit;
+  retryToken?: number;
+  onFailure?: () => void;
+}) {
   const [failed, setFailed] = useState(false);
+  useEffect(() => setFailed(false), [exhibit.image, retryToken]);
   return exhibit.image && !failed ? (
     <img
       className={`exhibit-image ${exhibit.hall === "symbols" ? "symbol-image" : ""}`}
-      src={asset(exhibit.image)}
-      alt={exhibit.title}
-      onError={() => setFailed(true)}
+      src={asset(exhibit.image) + (retryToken ? `?retry=${retryToken}` : "")}
+      alt={exhibit.imageCaption || exhibit.title}
+      onError={() => {
+        setFailed(true);
+        onFailure?.();
+      }}
       loading="lazy"
     />
   ) : (
@@ -85,10 +97,17 @@ export function SourceLinks({ ids }: { ids: string[] }) {
       {ids.map((id) => {
         const s = sources.find((s) => s.id === id);
         return s ? (
-          <a key={id} href={s.url} target="_blank" rel="noreferrer">
-            {s.label}
-            <ArrowUpRight size={14} />
-          </a>
+          <span key={id}>
+            <a href={s.url} target="_blank" rel="noreferrer">
+              {s.label}
+              <ArrowUpRight size={14} />
+            </a>
+            {s.licenseUrl && (
+              <a href={s.licenseUrl} target="_blank" rel="noreferrer">
+                Условия лицензии <ArrowUpRight size={12} />
+              </a>
+            )}
+          </span>
         ) : null;
       })}
     </div>

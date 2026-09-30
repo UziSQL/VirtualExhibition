@@ -362,5 +362,690 @@
         "hidden": ""
       }
     }
+  },
+  {
+    "file": "craft.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:%D0%9A%D0%B0%D0%B7%D0%B0%D1%85%D1%81%D0%BA%D0%B0%D1%8F_%D0%B6%D0%B5%D0%BD%D1%89%D0%B8%D0%BD%D0%B0_%D1%82%D0%BA%D1%91%D1%82.jpg",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/3/3e/%D0%9A%D0%B0%D0%B7%D0%B0%D1%85%D1%81%D0%BA%D0%B0%D1%8F_%D0%B6%D0%B5%D0%BD%D1%89%D0%B8%D0%BD%D0%B0_%D1%82%D0%BA%D1%91%D1%82.jpg",
+    "download": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/3e/%D0%9A%D0%B0%D0%B7%D0%B0%D1%85%D1%81%D0%BA%D0%B0%D1%8F_%D0%B6%D0%B5%D0%BD%D1%89%D0%B8%D0%BD%D0%B0_%D1%82%D0%BA%D1%91%D1%82.jpg/960px-%D0%9A%D0%B0%D0%B7%D0%B0%D1%85%D1%81%D0%BA%D0%B0%D1%8F_%D0%B6%D0%B5%D0%BD%D1%89%D0%B8%D0%BD%D0%B0_%D1%82%D0%BA%D1%91%D1%82.jpg",
+    "width": 960,
+    "height": 640,
+    "changes": "Commons thumbnail; proportionally resized, not cropped",
+    "metadata": {
+      "DateTime": {
+        "value": "2024-03-27 19:48:28",
+        "source": "mediawiki-metadata",
+        "hidden": ""
+      },
+      "ObjectName": {
+        "value": "Казахская женщина ткёт",
+        "source": "mediawiki-metadata"
+      },
+      "CommonsMetadataExtension": {
+        "value": 1.2,
+        "source": "extension",
+        "hidden": ""
+      },
+      "Categories": {
+        "value": "Women wearing hats in Kazakhstan|Looms|Female artists from Kazakhstan|Self-published work|Rugs and carpets of Kazakhstan|Images from Wiki Loves Folklore 2024|Women at work in Kazakhstan|Old women of Kazakhstan|Old women wearing coats|Rug weaving|Old women wearing hats|Women wearing blue coats|Images from Wiki Loves Folklore 2024 in Kazakhstan|Kazakhstan photographs taken on 2024-03-23|Images from Wiki Loves Folklore 2024 to check|Uploaded via Campaign:wlf 2024|Women weaving|Old women at work",
+        "source": "commons-categories",
+        "hidden": ""
+      },
+      "Assessments": {
+        "value": "",
+        "source": "commons-categories",
+        "hidden": ""
+      },
+      "ImageDescription": {
+        "value": "Kazakh woman weaving a rug during Nauryz",
+        "source": "commons-desc-page"
+      },
+      "DateTimeOriginal": {
+        "value": "2024-03-23 14:07:48",
+        "source": "commons-desc-page"
+      },
+      "Credit": {
+        "value": "<span class=\"int-own-work\" lang=\"en\">Own work</span>",
+        "source": "commons-desc-page"
+      },
+      "Artist": {
+        "value": "<a href=\"//commons.wikimedia.org/wiki/User:%D0%98%D0%B3%D0%BE%D1%80%D1%8C_%D0%A3%D0%BB%D0%B8%D1%82%D0%B8%D0%BD\" title=\"User:Игорь Улитин\">Игорь Улитин</a>",
+        "source": "commons-desc-page"
+      },
+      "LicenseShortName": {
+        "value": "CC BY-SA 4.0",
+        "source": "commons-desc-page",
+        "hidden": ""
+      },
+      "UsageTerms": {
+        "value": "Creative Commons Attribution-Share Alike 4.0",
+        "source": "commons-desc-page"
+      },
+      "AttributionRequired": {
+        "value": "true",
+        "source": "commons-desc-page",
+        "hidden": ""
+      },
+      "LicenseUrl": {
+        "value": "https://creativecommons.org/licenses/by-sa/4.0",
+        "source": "commons-desc-page"
+      },
+      "Copyrighted": {
+        "value": "True",
+        "source": "commons-desc-page",
+        "hidden": ""
+      },
+      "Restrictions": {
+        "value": "",
+        "source": "commons-desc-page",
+        "hidden": ""
+      },
+      "License": {
+        "value": "cc-by-sa-4.0",
+        "source": "commons-templates",
+        "hidden": ""
+      }
+    }
+  },
+  {
+    "file": "yurt.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:%D0%9A%D0%B0%D0%B7%D0%B0%D1%85%D1%81%D0%BA%D0%B0%D1%8F_%D1%8E%D1%80%D1%82%D0%B0.jpg",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/f/f7/%D0%9A%D0%B0%D0%B7%D0%B0%D1%85%D1%81%D0%BA%D0%B0%D1%8F_%D1%8E%D1%80%D1%82%D0%B0.jpg",
+    "download": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f7/%D0%9A%D0%B0%D0%B7%D0%B0%D1%85%D1%81%D0%BA%D0%B0%D1%8F_%D1%8E%D1%80%D1%82%D0%B0.jpg/960px-%D0%9A%D0%B0%D0%B7%D0%B0%D1%85%D1%81%D0%BA%D0%B0%D1%8F_%D1%8E%D1%80%D1%82%D0%B0.jpg",
+    "width": 960,
+    "height": 636,
+    "changes": "Commons thumbnail; proportionally resized, not cropped",
+    "metadata": {
+      "DateTime": {
+        "value": "2017-04-16 16:29:55",
+        "source": "mediawiki-metadata",
+        "hidden": ""
+      },
+      "ObjectName": {
+        "value": "Казахская юрта",
+        "source": "mediawiki-metadata"
+      },
+      "CommonsMetadataExtension": {
+        "value": 1.2,
+        "source": "extension",
+        "hidden": ""
+      },
+      "Categories": {
+        "value": "Self-published work|Yurts in Kazakhstan|Yurts in Russia",
+        "source": "commons-categories",
+        "hidden": ""
+      },
+      "Assessments": {
+        "value": "",
+        "source": "commons-categories",
+        "hidden": ""
+      },
+      "ImageDescription": {
+        "value": "Казахская юрта в горах Алтая",
+        "source": "commons-desc-page"
+      },
+      "DateTimeOriginal": {
+        "value": "2013-05-04 19:22:57",
+        "source": "commons-desc-page"
+      },
+      "Credit": {
+        "value": "<span class=\"int-own-work\" lang=\"en\">Own work</span>",
+        "source": "commons-desc-page"
+      },
+      "Artist": {
+        "value": "<a href=\"//commons.wikimedia.org/wiki/User:Alexandr_frolov\" title=\"User:Alexandr frolov\">Alexandr frolov</a>",
+        "source": "commons-desc-page"
+      },
+      "LicenseShortName": {
+        "value": "CC BY-SA 4.0",
+        "source": "commons-desc-page",
+        "hidden": ""
+      },
+      "UsageTerms": {
+        "value": "Creative Commons Attribution-Share Alike 4.0",
+        "source": "commons-desc-page"
+      },
+      "AttributionRequired": {
+        "value": "true",
+        "source": "commons-desc-page",
+        "hidden": ""
+      },
+      "LicenseUrl": {
+        "value": "https://creativecommons.org/licenses/by-sa/4.0",
+        "source": "commons-desc-page"
+      },
+      "Copyrighted": {
+        "value": "True",
+        "source": "commons-desc-page",
+        "hidden": ""
+      },
+      "Restrictions": {
+        "value": "",
+        "source": "commons-desc-page",
+        "hidden": ""
+      },
+      "License": {
+        "value": "cc-by-sa-4.0",
+        "source": "commons-templates",
+        "hidden": ""
+      }
+    }
+  },
+  {
+    "file": "dombra.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Dombra_Player_(5663178574)_(2).jpg",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/9/9b/Dombra_Player_%285663178574%29_%282%29.jpg",
+    "download": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/9b/Dombra_Player_%285663178574%29_%282%29.jpg/960px-Dombra_Player_%285663178574%29_%282%29.jpg",
+    "width": 960,
+    "height": 1280,
+    "changes": "Commons thumbnail; proportionally resized, not cropped",
+    "metadata": {
+      "DateTime": {
+        "value": "2013-10-28 01:19:44",
+        "source": "mediawiki-metadata",
+        "hidden": ""
+      },
+      "ObjectName": {
+        "value": "Dombra Player (5663178574) (2)",
+        "source": "mediawiki-metadata"
+      },
+      "CommonsMetadataExtension": {
+        "value": 1.2,
+        "source": "extension",
+        "hidden": ""
+      },
+      "Categories": {
+        "value": "People of Kazakhstan|Taken with Nikon Coolpix 4300|Flickr images reviewed by File Upload Bot (Magnus Manske)|Files with coordinates missing SDC location of creation|Photographs by upyernoz|People in Taraz|People playing dombras",
+        "source": "commons-categories",
+        "hidden": ""
+      },
+      "Assessments": {
+        "value": "",
+        "source": "commons-categories",
+        "hidden": ""
+      },
+      "GPSLatitude": {
+        "value": "42.901110",
+        "source": "commons-desc-page"
+      },
+      "GPSLongitude": {
+        "value": "71.370796",
+        "source": "commons-desc-page"
+      },
+      "GPSMapDatum": {
+        "value": "WGS-84",
+        "source": "commons-desc-page",
+        "hidden": ""
+      },
+      "ImageDescription": {
+        "value": "I ran into him in a park when the other events were starting to break up.",
+        "source": "commons-desc-page"
+      },
+      "DateTimeOriginal": {
+        "value": "2010-03-22 00:00",
+        "source": "commons-desc-page"
+      },
+      "Credit": {
+        "value": "<p><a rel=\"nofollow\" class=\"external text\" href=\"https://www.flickr.com/photos/upyernoz/5663178574/\">Dombra Player</a>\n</p>\n<ul><li>Uploaded by <a href=\"//commons.wikimedia.org/wiki/User:AlbertHerring\" class=\"mw-redirect\" title=\"User:AlbertHerring\">AlbertHerring</a></li></ul>",
+        "source": "commons-desc-page"
+      },
+      "Artist": {
+        "value": "<a rel=\"nofollow\" class=\"external text\" href=\"https://www.flickr.com/people/48600082269@N01\">upyernoz</a> from Haverford, USA",
+        "source": "commons-desc-page"
+      },
+      "LicenseShortName": {
+        "value": "CC BY 2.0",
+        "source": "commons-desc-page",
+        "hidden": ""
+      },
+      "UsageTerms": {
+        "value": "Creative Commons Attribution 2.0",
+        "source": "commons-desc-page"
+      },
+      "AttributionRequired": {
+        "value": "true",
+        "source": "commons-desc-page",
+        "hidden": ""
+      },
+      "LicenseUrl": {
+        "value": "https://creativecommons.org/licenses/by/2.0",
+        "source": "commons-desc-page"
+      },
+      "Copyrighted": {
+        "value": "True",
+        "source": "commons-desc-page",
+        "hidden": ""
+      },
+      "Restrictions": {
+        "value": "",
+        "source": "commons-desc-page",
+        "hidden": ""
+      },
+      "License": {
+        "value": "cc-by-2.0",
+        "source": "commons-templates",
+        "hidden": ""
+      }
+    }
+  },
+  {
+    "file": "shahtinsk.png",
+    "page": "https://commons.wikimedia.org/wiki/File:%D0%A8%D0%B0%D1%85%D1%82%D0%B8%D0%BD%D1%81%D0%BA_%D1%82%D2%AF%D0%BD_2023.png",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/7/72/%D0%A8%D0%B0%D1%85%D1%82%D0%B8%D0%BD%D1%81%D0%BA_%D1%82%D2%AF%D0%BD_2023.png",
+    "download": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/72/%D0%A8%D0%B0%D1%85%D1%82%D0%B8%D0%BD%D1%81%D0%BA_%D1%82%D2%AF%D0%BD_2023.png/960px-%D0%A8%D0%B0%D1%85%D1%82%D0%B8%D0%BD%D1%81%D0%BA_%D1%82%D2%AF%D0%BD_2023.png",
+    "width": 960,
+    "height": 638,
+    "changes": "Commons thumbnail; proportionally resized, not cropped",
+    "metadata": {
+      "DateTime": {
+        "value": "2026-06-22 19:19:39",
+        "source": "mediawiki-metadata",
+        "hidden": ""
+      },
+      "ObjectName": {
+        "value": "Шахтинск түн 2023",
+        "source": "mediawiki-metadata"
+      },
+      "CommonsMetadataExtension": {
+        "value": 1.2,
+        "source": "extension",
+        "hidden": ""
+      },
+      "Categories": {
+        "value": "Shakhtinsk|Self-published work",
+        "source": "commons-categories",
+        "hidden": ""
+      },
+      "Assessments": {
+        "value": "",
+        "source": "commons-categories",
+        "hidden": ""
+      },
+      "ImageDescription": {
+        "value": "Шахтинск түн",
+        "source": "commons-desc-page"
+      },
+      "DateTimeOriginal": {
+        "value": "2023",
+        "source": "commons-desc-page"
+      },
+      "Credit": {
+        "value": "<span class=\"int-own-work\" lang=\"en\">Own work</span>",
+        "source": "commons-desc-page"
+      },
+      "Artist": {
+        "value": "<a href=\"//commons.wikimedia.org/w/index.php?title=User:%D0%A2%D2%B1%D1%80%D0%B0%D1%80_%D2%9A%D0%B0%D0%B7%D0%B0%D0%BD%D2%93%D0%B0%D0%BB%D0%BE%D0%B2&amp;action=edit&amp;redlink=1\" class=\"new\" title=\"User:Тұрар Қазанғалов (page does not exist)\">Тұрар Қазанғалов</a>",
+        "source": "commons-desc-page"
+      },
+      "LicenseShortName": {
+        "value": "CC BY-SA 4.0",
+        "source": "commons-desc-page",
+        "hidden": ""
+      },
+      "UsageTerms": {
+        "value": "Creative Commons Attribution-Share Alike 4.0",
+        "source": "commons-desc-page"
+      },
+      "AttributionRequired": {
+        "value": "true",
+        "source": "commons-desc-page",
+        "hidden": ""
+      },
+      "LicenseUrl": {
+        "value": "https://creativecommons.org/licenses/by-sa/4.0",
+        "source": "commons-desc-page"
+      },
+      "Copyrighted": {
+        "value": "True",
+        "source": "commons-desc-page",
+        "hidden": ""
+      },
+      "Restrictions": {
+        "value": "",
+        "source": "commons-desc-page",
+        "hidden": ""
+      },
+      "License": {
+        "value": "cc-by-sa-4.0",
+        "source": "commons-templates",
+        "hidden": ""
+      }
+    }
+  },
+  {
+    "file": "dolinka.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Dolinka_Museum_1.JPG",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/0/01/Dolinka_Museum_1.JPG",
+    "download": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/01/Dolinka_Museum_1.JPG/960px-Dolinka_Museum_1.JPG",
+    "width": 960,
+    "height": 540,
+    "changes": "Commons thumbnail; proportionally resized, not cropped",
+    "metadata": {
+      "DateTime": {
+        "value": "2015-05-31 12:19:29",
+        "source": "mediawiki-metadata",
+        "hidden": ""
+      },
+      "ObjectName": {
+        "value": "Dolinka Museum 1",
+        "source": "mediawiki-metadata"
+      },
+      "CommonsMetadataExtension": {
+        "value": 1.2,
+        "source": "extension",
+        "hidden": ""
+      },
+      "Categories": {
+        "value": "2013 in Kazakhstan|KarLag Museum|Self-published work",
+        "source": "commons-categories",
+        "hidden": ""
+      },
+      "Assessments": {
+        "value": "",
+        "source": "commons-categories",
+        "hidden": ""
+      },
+      "ImageDescription": {
+        "value": "Dolinka Museum",
+        "source": "commons-desc-page"
+      },
+      "DateTimeOriginal": {
+        "value": "2013-09-28 13:29:04",
+        "source": "commons-desc-page"
+      },
+      "Credit": {
+        "value": "<span class=\"int-own-work\" lang=\"en\">Own work</span>",
+        "source": "commons-desc-page"
+      },
+      "Artist": {
+        "value": "<a href=\"//commons.wikimedia.org/w/index.php?title=User:Mheidegger&amp;action=edit&amp;redlink=1\" class=\"new\" title=\"User:Mheidegger (page does not exist)\">Yakov Fedorov</a>",
+        "source": "commons-desc-page"
+      },
+      "LicenseShortName": {
+        "value": "CC BY-SA 4.0",
+        "source": "commons-desc-page",
+        "hidden": ""
+      },
+      "UsageTerms": {
+        "value": "Creative Commons Attribution-Share Alike 4.0",
+        "source": "commons-desc-page"
+      },
+      "AttributionRequired": {
+        "value": "true",
+        "source": "commons-desc-page",
+        "hidden": ""
+      },
+      "LicenseUrl": {
+        "value": "https://creativecommons.org/licenses/by-sa/4.0",
+        "source": "commons-desc-page"
+      },
+      "Copyrighted": {
+        "value": "True",
+        "source": "commons-desc-page",
+        "hidden": ""
+      },
+      "Restrictions": {
+        "value": "",
+        "source": "commons-desc-page",
+        "hidden": ""
+      },
+      "License": {
+        "value": "cc-by-sa-4.0",
+        "source": "commons-templates",
+        "hidden": ""
+      }
+    }
+  },
+  {
+    "file": "karkaraly.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Shaitankol.jpg",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/1/13/Shaitankol.jpg",
+    "download": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/13/Shaitankol.jpg/960px-Shaitankol.jpg",
+    "width": 960,
+    "height": 720,
+    "changes": "Commons thumbnail; proportionally resized, not cropped",
+    "metadata": {
+      "DateTime": {
+        "value": "2022-06-24 19:18:34",
+        "source": "mediawiki-metadata",
+        "hidden": ""
+      },
+      "ObjectName": {
+        "value": "Shaitankol",
+        "source": "mediawiki-metadata"
+      },
+      "CommonsMetadataExtension": {
+        "value": 1.2,
+        "source": "extension",
+        "hidden": ""
+      },
+      "Categories": {
+        "value": "Karkaraly National Park|Self-published work|Kazakhstan photographs taken on 2019-10-06|Images from Wiki Loves Earth 2022|Images from Wiki Loves Earth 2022 in Kazakhstan|Uploaded via Campaign:wle-kz|Images from Wiki Loves Earth missing SDC depicts|Images from Wiki Loves Earth missing SDC location of creation",
+        "source": "commons-categories",
+        "hidden": ""
+      },
+      "Assessments": {
+        "value": "",
+        "source": "commons-categories",
+        "hidden": ""
+      },
+      "ImageDescription": {
+        "value": "Каркаралинский национальный парк: Карагандинская область",
+        "source": "commons-desc-page"
+      },
+      "DateTimeOriginal": {
+        "value": "2019-10-06 10:54:40",
+        "source": "commons-desc-page"
+      },
+      "Credit": {
+        "value": "<span class=\"int-own-work\" lang=\"en\">Own work</span>",
+        "source": "commons-desc-page"
+      },
+      "Artist": {
+        "value": "<a href=\"//commons.wikimedia.org/w/index.php?title=User:Marina_Nugman&amp;action=edit&amp;redlink=1\" class=\"new\" title=\"User:Marina Nugman (page does not exist)\">Marina Nugman</a>",
+        "source": "commons-desc-page"
+      },
+      "LicenseShortName": {
+        "value": "CC BY-SA 4.0",
+        "source": "commons-desc-page",
+        "hidden": ""
+      },
+      "UsageTerms": {
+        "value": "Creative Commons Attribution-Share Alike 4.0",
+        "source": "commons-desc-page"
+      },
+      "AttributionRequired": {
+        "value": "true",
+        "source": "commons-desc-page",
+        "hidden": ""
+      },
+      "LicenseUrl": {
+        "value": "https://creativecommons.org/licenses/by-sa/4.0",
+        "source": "commons-desc-page"
+      },
+      "Copyrighted": {
+        "value": "True",
+        "source": "commons-desc-page",
+        "hidden": ""
+      },
+      "Restrictions": {
+        "value": "",
+        "source": "commons-desc-page",
+        "hidden": ""
+      },
+      "License": {
+        "value": "cc-by-sa-4.0",
+        "source": "commons-templates",
+        "hidden": ""
+      }
+    }
+  },
+  {
+    "file": "archive-oath.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Egemen_Archive_Nazarbayev_Innaugration.jpg",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/6/65/Egemen_Archive_Nazarbayev_Innaugration.jpg",
+    "download": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/65/Egemen_Archive_Nazarbayev_Innaugration.jpg/960px-Egemen_Archive_Nazarbayev_Innaugration.jpg",
+    "width": 960,
+    "height": 1285,
+    "changes": "Commons thumbnail; proportionally resized, not cropped",
+    "metadata": {
+      "DateTime": {
+        "value": "2017-03-12 04:04:58",
+        "source": "mediawiki-metadata",
+        "hidden": ""
+      },
+      "ObjectName": {
+        "value": "Egemen Archive Nazarbayev Innaugration",
+        "source": "mediawiki-metadata"
+      },
+      "CommonsMetadataExtension": {
+        "value": 1.2,
+        "source": "extension",
+        "hidden": ""
+      },
+      "Categories": {
+        "value": "Items with VRTS permission confirmed|Egemen Kazakhstan|Oaths of office in Kazakhstan|Nursultan Nazarbayev in 1991|1991 in Almaty|Busts of Lenin|Nursultan Nazarbayev in Almaty|Unidentified locations in Almaty|Nursultan Nazarbayev standing|Nursultan Nazarbayev speaking|Nursultan Nazarbayev with microphones|Nursultan Nazarbayev looking left|Nursultan Nazarbayev looking up|Nursultan Nazarbayev holding objects",
+        "source": "commons-categories",
+        "hidden": ""
+      },
+      "Assessments": {
+        "value": "",
+        "source": "commons-categories",
+        "hidden": ""
+      },
+      "ImageDescription": {
+        "value": "Nazarbayev is swearing in.",
+        "source": "commons-desc-page"
+      },
+      "DateTimeOriginal": {
+        "value": "1991-12-10",
+        "source": "commons-desc-page"
+      },
+      "Credit": {
+        "value": "<span class=\"int-own-work\" lang=\"en\">Own work</span>",
+        "source": "commons-desc-page"
+      },
+      "Artist": {
+        "value": "<a href=\"//commons.wikimedia.org/wiki/User:EgemenMedia\" title=\"User:EgemenMedia\">EgemenMedia</a>",
+        "source": "commons-desc-page"
+      },
+      "LicenseShortName": {
+        "value": "CC BY-SA 4.0",
+        "source": "commons-desc-page",
+        "hidden": ""
+      },
+      "UsageTerms": {
+        "value": "Creative Commons Attribution-Share Alike 4.0",
+        "source": "commons-desc-page"
+      },
+      "AttributionRequired": {
+        "value": "true",
+        "source": "commons-desc-page",
+        "hidden": ""
+      },
+      "LicenseUrl": {
+        "value": "https://creativecommons.org/licenses/by-sa/4.0",
+        "source": "commons-desc-page"
+      },
+      "Copyrighted": {
+        "value": "True",
+        "source": "commons-desc-page",
+        "hidden": ""
+      },
+      "Restrictions": {
+        "value": "",
+        "source": "commons-desc-page",
+        "hidden": ""
+      },
+      "License": {
+        "value": "cc-by-sa-4.0",
+        "source": "commons-templates",
+        "hidden": ""
+      }
+    }
+  },
+  {
+    "file": "archive-cis.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Egemen_Archive_Nazarbayev_and_CIS_leaders.jpg",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/9/9b/Egemen_Archive_Nazarbayev_and_CIS_leaders.jpg",
+    "download": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/9b/Egemen_Archive_Nazarbayev_and_CIS_leaders.jpg/960px-Egemen_Archive_Nazarbayev_and_CIS_leaders.jpg",
+    "width": 960,
+    "height": 569,
+    "changes": "Commons thumbnail; proportionally resized, not cropped",
+    "metadata": {
+      "DateTime": {
+        "value": "2021-08-07 21:13:34",
+        "source": "mediawiki-metadata",
+        "hidden": ""
+      },
+      "ObjectName": {
+        "value": "Egemen Archive Nazarbayev and CIS leaders",
+        "source": "mediawiki-metadata"
+      },
+      "CommonsMetadataExtension": {
+        "value": 1.2,
+        "source": "extension",
+        "hidden": ""
+      },
+      "Categories": {
+        "value": "Alma-Ata Protocol|Askar Akayev|1972 establishments in the Soviet Union|Saparmyrat Nyýazow|Rahmon Nabiyev|Built in the Soviet Union in 1972|Items with VRTS permission confirmed|Images with extracted images|Egemen Kazakhstan|Nursultan Nazarbayev in 1991|Islam Karimov in 1991|Kurmangazy street (Almaty)|Nursultan Nazarbayev in Almaty|Nursultan Nazarbayev with national leaders|Nursultan Nazarbayev sitting|Nursultan Nazarbayev facing right|Nursultan Nazarbayev speaking|Nursultan Nazarbayev with microphones|Islam Karimov with national leaders",
+        "source": "commons-categories",
+        "hidden": ""
+      },
+      "Assessments": {
+        "value": "",
+        "source": "commons-categories",
+        "hidden": ""
+      },
+      "ImageDescription": {
+        "value": "Nursultan Nazarbayev with CIS leaders: Askar Akayev, Saparmurat Niyazov, Islam Karimov, and Rahmon Nabiyev during the <a href=\"https://en.wikipedia.org/wiki/Alma-Ata_Protocol\" class=\"extiw\" title=\"en:Alma-Ata Protocol\">Alma-Ata Protocal</a> on 21 December 1991.",
+        "source": "commons-desc-page"
+      },
+      "DateTimeOriginal": {
+        "value": "21 December 1991",
+        "source": "commons-desc-page"
+      },
+      "Credit": {
+        "value": "<span class=\"int-own-work\" lang=\"en\">Own work</span>",
+        "source": "commons-desc-page"
+      },
+      "Artist": {
+        "value": "<a href=\"//commons.wikimedia.org/wiki/User:EgemenMedia\" title=\"User:EgemenMedia\">EgemenMedia</a>",
+        "source": "commons-desc-page"
+      },
+      "LicenseShortName": {
+        "value": "CC BY-SA 4.0",
+        "source": "commons-desc-page",
+        "hidden": ""
+      },
+      "UsageTerms": {
+        "value": "Creative Commons Attribution-Share Alike 4.0",
+        "source": "commons-desc-page"
+      },
+      "AttributionRequired": {
+        "value": "true",
+        "source": "commons-desc-page",
+        "hidden": ""
+      },
+      "LicenseUrl": {
+        "value": "https://creativecommons.org/licenses/by-sa/4.0",
+        "source": "commons-desc-page"
+      },
+      "Copyrighted": {
+        "value": "True",
+        "source": "commons-desc-page",
+        "hidden": ""
+      },
+      "Restrictions": {
+        "value": "",
+        "source": "commons-desc-page",
+        "hidden": ""
+      },
+      "License": {
+        "value": "cc-by-sa-4.0",
+        "source": "commons-templates",
+        "hidden": ""
+      }
+    }
   }
 ]

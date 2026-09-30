@@ -31,8 +31,7 @@ export default function ModelViewer({ kind }: { kind: "dombra" | "yurt" }) {
         />
       </label>
       <p className="fineprint">
-        Вращайте мышью или пальцем. Стилизованная иллюстрация, не точная
-        музейная реконструкция.
+        Вращайте мышью или пальцем. Стилизованная модель.
       </p>
     </div>
   );

@@ -22,7 +22,9 @@ test("Каталог, вопросы, паспорт, сохранение и с
   await page.getByRole("button", { name: /Мой паспорт/ }).click();
   await expect(page.getByRole("dialog")).toContainText("1 из 6");
   await expect(page.locator(".stamp.collected")).toHaveCount(1);
-  await expect(page.getByRole("dialog")).toContainText("Ожидает материалов");
+  await expect(page.getByRole("dialog")).not.toContainText(
+    "Ожидает материалов",
+  );
   await page.reload();
   await page.getByRole("button", { name: /Мой паспорт/ }).click();
   await expect(page.locator(".stamp.collected")).toHaveCount(1);
@@ -70,8 +72,8 @@ test("3D, навигация, движение, столкновения, E и �
     .poll(() => page.evaluate(() => !!document.pointerLockElement))
     .toBe(false);
   await page.getByRole("button", { name: "Продолжить", exact: true }).click();
-  await page.getByRole("button", { name: "01 История" }).click();
-  await expect(canvas).toHaveAttribute("data-position", /-10\.0\d,-8\.0\d/, {
+  await page.getByRole("button", { name: /01 Менің елімнің тарихы/ }).click();
+  await expect(canvas).toHaveAttribute("data-position", /-8\.9\d,-8\.0\d/, {
     timeout: 30000,
   });
   await page.keyboard.down("KeyW");
@@ -131,7 +133,12 @@ test("Пожелание остаётся локальным; портреты �
 }) => {
   await page.goto("/");
   await page.getByRole("button", { name: "Каталог", exact: true }).click();
-  await expect(page.locator(".catalog-card img")).toHaveCount(5);
+  await expect(page.locator(".catalog-card img")).toHaveCount(17);
+  await page
+    .locator(".catalog-card img")
+    .evaluateAll((imgs) =>
+      imgs.forEach((img) => ((img as HTMLImageElement).loading = "eager")),
+    );
   await expect
     .poll(() =>
       page
@@ -151,7 +158,7 @@ test("Пожелание остаётся локальным; портреты �
     .fill("Пусть знания открывают новые пути!");
   await page.getByRole("button", { name: "Сохранить пожелание" }).click();
   await expect(page.getByRole("dialog")).toContainText(
-    "Пожелание сохранено на этом устройстве.",
+    "Ваше пожелание сохранено.",
   );
   await page.reload();
   await page.getByRole("button", { name: "Каталог", exact: true }).click();
@@ -199,9 +206,8 @@ test("Мобильный экран: каталог, джойстик и обз�
   await page.getByRole("button", { name: "Открыть меню" }).click();
   await page.getByRole("button", { name: "Каталог", exact: true }).click();
   await page.getByRole("button", { name: /Две струны/ }).click();
-  await expect(page.getByRole("dialog")).toContainText(
-    "Стилизованная иллюстрация",
-  );
+  await page.getByText("Рассмотреть объёмную модель", { exact: true }).click();
+  await expect(page.getByRole("dialog")).toContainText("Стилизованная модель");
   await expect(
     page.getByRole("slider", { name: "Поворот модели" }),
   ).toBeVisible();
@@ -212,7 +218,7 @@ test("Мобильный экран: каталог, джойстик и обз�
   ).toBeLessThanOrEqual(320);
   await context.close();
 });
-test("Полная экскурсия с уменьшением движения даёт пять честных отметок", async ({
+test("Полная экскурсия с уменьшением движения даёт шесть отметок", async ({
   page,
 }) => {
   await page.emulateMedia({ reducedMotion: "reduce" });
@@ -220,9 +226,9 @@ test("Полная экскурсия с уменьшением движения
   await page
     .getByRole("button", { name: "Начать экскурсию", exact: true })
     .click();
-  for (let i = 0; i < 14; i++) {
+  for (let i = 0; i < 17; i++) {
     await expect(page.locator(".tour-card")).toContainText(
-      `ЭКСКУРСИЯ · ${i + 1}/14`,
+      `ЭКСКУРСИЯ · ${i + 1}/17`,
     );
     await expect(page.locator(".tour-card")).toContainText("ОСТАНОВКА");
     await expect(page.locator(".scene-container canvas")).toHaveAttribute(
@@ -231,15 +237,17 @@ test("Полная экскурсия с уменьшением движения
     );
     await page
       .getByRole("button", {
-        name: i === 13 ? "Завершить" : "Далее",
+        name: i === 16 ? "Завершить" : "Далее",
         exact: true,
       })
       .click();
   }
   await expect(page.locator(".tour-card")).not.toBeVisible();
   await page.getByRole("button", { name: /Мой паспорт/ }).click();
-  await expect(page.locator(".stamp.collected")).toHaveCount(5);
-  await expect(page.getByRole("dialog")).toContainText("Ожидает материалов");
+  await expect(page.locator(".stamp.collected")).toHaveCount(6);
+  await expect(page.getByRole("dialog")).not.toContainText(
+    "Ожидает материалов",
+  );
 });
 test("Без WebGL открывается тот же каталог; ошибка картинки не ломает музей", async ({
   page,
@@ -262,4 +270,22 @@ test("Без WebGL открывается тот же каталог; ошибк
     "Изображение недоступно",
   );
   await expect(page.getByRole("dialog")).toContainText("Шакен Ниязбеков");
+  await page.unroute("**/images/flag.svg");
+  await page
+    .getByRole("button", {
+      name: "Повторить загрузку изображений",
+      exact: true,
+    })
+    .click();
+  await expect(page.locator(".exhibit-figure img")).toBeVisible();
+  await expect
+    .poll(() =>
+      page
+        .locator(".exhibit-figure img")
+        .evaluate(
+          (img: HTMLImageElement) => img.complete && img.naturalWidth > 0,
+        ),
+    )
+    .toBe(true);
+  await expect(page.locator(".image-retry")).not.toBeVisible();
 });

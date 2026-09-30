@@ -28,13 +28,8 @@ import {
   X,
 } from "lucide-react";
 import { exhibition } from "./data/config";
-import {
-  exhibits,
-  halls,
-  hallExhibits,
-  sources,
-  type HallId,
-} from "./data/museum";
+import { atrium, exhibits, halls, sources, type HallId } from "./data/museum";
+import { HallTitle } from "./components/HallTitle";
 import {
   advanceTour,
   emptyProgress,
@@ -52,6 +47,7 @@ import {
   SourceLinks,
 } from "./components/UI";
 import type { Controls, Navigation } from "./components/MuseumScene";
+import type { ImageStatus } from "./components/ExhibitPanel";
 const MuseumScene = lazy(() => import("./components/MuseumScene"));
 const ModelViewer = lazy(() => import("./components/ModelViewer"));
 class SceneBoundary extends Component<
@@ -106,6 +102,23 @@ function SunMark() {
   );
 }
 export default function App() {
+  const [imageRetry, setImageRetry] = useState(0);
+  const [imageErrors, setImageErrors] = useState<string[]>([]);
+  const onImageStatus = useCallback((id: string, status: ImageStatus) => {
+    setImageErrors((previous) =>
+      status === "error"
+        ? previous.includes(id)
+          ? previous
+          : [...previous, id]
+        : previous.includes(id)
+          ? previous.filter((item) => item !== id)
+          : previous,
+    );
+  }, []);
+  const retryImages = () => {
+    setImageErrors([]);
+    setImageRetry((value) => value + 1);
+  };
   const [intro, setIntro] = useState(true),
     [walking, setWalking] = useState(false),
     [panel, setPanel] = useState<Panel>(null),
@@ -131,6 +144,7 @@ export default function App() {
     }),
     [storageError, setStorageError] = useState(false);
   const [filter, setFilter] = useState<HallId | "all">("all"),
+    [modelExpanded, setModelExpanded] = useState(false),
     [reset, setReset] = useState(false),
     [wish, setWish] = useState(progress.wish),
     [wishSaved, setWishSaved] = useState(false);
@@ -162,6 +176,7 @@ export default function App() {
     if (document.pointerLockElement) document.exitPointerLock();
   };
   const openExhibit = useCallback((id: string) => {
+    setModelExpanded(false);
     setSelected(id);
     setPanel(null);
     setProgress((p) => visit(p, id));
@@ -206,8 +221,12 @@ export default function App() {
   }, [tour?.index]);
   const onArrive = useCallback(() => {
     setArrived(true);
-    if (tourRef.current)
-      setProgress((p) => visit(p, exhibits[tourRef.current!.index].id));
+    const currentTour = tourRef.current;
+    if (currentTour) {
+      // The tour may end before React applies this queued progress update.
+      const exhibitId = exhibits[currentTour.index].id;
+      setProgress((p) => visit(p, exhibitId));
+    }
   }, []);
   const advance = (direction: number) => {
     setArrived(false);
@@ -218,7 +237,7 @@ export default function App() {
     const timer = setTimeout(() => {
       setArrived(false);
       setTour((t) => advanceTour(t, 1, exhibits.length));
-    }, 25000);
+    }, 21000);
     return () => clearTimeout(timer);
   }, [tour, arrived, blocked]);
   useEffect(() => {
@@ -260,6 +279,11 @@ export default function App() {
         Исследуйте музей в своём темпе. Открывайте экспонаты, чтобы собирать
         отметки в паспорте.
       </p>
+      {imageErrors.length > 0 && (
+        <button className="secondary image-retry" onClick={retryImages}>
+          Повторить загрузку изображений
+        </button>
+      )}
       <div className="filter-row" role="group" aria-label="Фильтр залов">
         <button
           className={filter === "all" ? "active" : ""}
@@ -273,7 +297,7 @@ export default function App() {
             className={filter === h.id ? "active" : ""}
             onClick={() => setFilter(h.id)}
           >
-            {h.short}
+            <HallTitle place={h} />
           </button>
         ))}
       </div>
@@ -286,12 +310,19 @@ export default function App() {
               key={e.id}
               onClick={() => openExhibit(e.id)}
             >
-              <SafeImage exhibit={e} />
+              <SafeImage
+                exhibit={e}
+                retryToken={imageRetry}
+                onFailure={() => onImageStatus(e.id, "error")}
+              />
+              {e.imageKind === "illustration" && (
+                <span className="media-label">Иллюстрация</span>
+              )}
               <div>
-                <span className="eyebrow">
-                  {halls.find((h) => h.id === e.hall)?.short}
-                  {progress.visited.includes(e.id) && " · ПРОСМОТРЕНО"}
-                </span>
+                <HallTitle place={halls.find((h) => h.id === e.hall)!} />
+                {progress.visited.includes(e.id) && (
+                  <span className="eyebrow">ПРОСМОТРЕНО</span>
+                )}
                 <h3>{e.title}</h3>
                 <p>{e.caption}</p>
                 <span className="card-arrow">
@@ -301,23 +332,6 @@ export default function App() {
             </button>
           ))}
       </div>
-      {(filter === "all" || filter === "region") &&
-        hallExhibits("region").length === 0 && (
-          <div className="empty-state">
-            <Map size={30} />
-            <h3>Моя малая родина</h3>
-            <span className="status-chip">Ожидает заполнения</span>
-            <p>
-              Здесь появятся название региона, местные фотографии и проверенные
-              истории. Авторы выставки ещё не добавили эти материалы.
-            </p>
-            <p className="fineprint">
-              Идея для участия: выберите памятное место, запишите рассказ о нём
-              и укажите источник фотографии. Этот зал пока не даёт отметку в
-              паспорте.
-            </p>
-          </div>
-        )}
     </>
   );
   const title = selected
@@ -327,7 +341,7 @@ export default function App() {
           catalog: "Коллекция музея",
           passport: "Паспорт путешественника",
           sources: "Источники и материалы",
-          about: "О выставке",
+          about: "Об авторе выставки",
           help: "Как исследовать музей",
           map: "Шесть залов. Одна история.",
           menu: "Продолжим путешествие?",
@@ -361,7 +375,7 @@ export default function App() {
         <nav className="top-nav" aria-label="Основная навигация">
           <button onClick={() => showPanel("map")}>Залы музея</button>
           <button onClick={() => showPanel("catalog")}>Каталог</button>
-          <button onClick={() => showPanel("about")}>О выставке</button>
+          <button onClick={() => showPanel("about")}>Об авторе</button>
         </nav>
         <div className="header-actions">
           <span className="language" title="Язык интерфейса: русский">
@@ -409,6 +423,8 @@ export default function App() {
                   navigation={navigation}
                   paused={!!tour?.paused}
                   quality={quality}
+                  imageRetry={imageRetry}
+                  onImageStatus={onImageStatus}
                   controls={controls}
                   onRoom={setRoom}
                   onTarget={setTarget}
@@ -470,7 +486,7 @@ export default function App() {
                 </span>
                 <i />
                 <span>
-                  <b>5–7</b>минут на экскурсию
+                  <b>6–8</b>минут на экскурсию
                 </span>
               </div>
               <button
@@ -485,24 +501,24 @@ export default function App() {
               <span className="live-dot" />
               ИНТЕРАКТИВНОЕ 3D-ПРОСТРАНСТВО
               <span>
-                Центральный атриум <ArrowUpRight size={14} />
+                <HallTitle place={atrium} /> <ArrowUpRight size={14} />
               </span>
             </div>
           </>
+        )}
+        {imageErrors.length > 0 && !blocked && (
+          <div className="image-load-notice" role="status">
+            <span>Некоторые изображения не загрузились.</span>
+            <button onClick={retryImages}>
+              Повторить загрузку изображений
+            </button>
+          </div>
         )}
         {!intro && !failed && (
           <>
             <div className="location-tag">
               <span className="live-dot" />
-              <div>
-                <span className="eyebrow">
-                  {activeHall
-                    ? "ЗАЛ " +
-                      String(halls.indexOf(activeHall) + 1).padStart(2, "0")
-                    : "ДОБРО ПОЖАЛОВАТЬ"}
-                </span>
-                <h2>{activeHall?.title || "Центральный атриум"}</h2>
-              </div>
+              <HallTitle place={activeHall || atrium} as="h2" />
             </div>
             {!tour && (
               <>
@@ -534,27 +550,6 @@ export default function App() {
                 )}
               </>
             )}
-            {room === "region" &&
-              !tour &&
-              hallExhibits("region").length === 0 && (
-                <div className="region-notice">
-                  <span className="eyebrow">ЭТА ИСТОРИЯ ЕЩЁ ВПЕРЕДИ</span>
-                  <h3>Ваш родной край</h3>
-                  <p>
-                    Зал ожидает местных фотографий и историй. Пока он не даёт
-                    отметку в паспорте.
-                  </p>
-                  <button
-                    className="text-button"
-                    onClick={() => {
-                      setFilter("region");
-                      showPanel("catalog");
-                    }}
-                  >
-                    Подробнее <ArrowRight size={16} />
-                  </button>
-                </div>
-              )}
             {!tour && !walking && (
               <button
                 className="resume-walk primary"
@@ -594,10 +589,14 @@ export default function App() {
               {tour.paused
                 ? "ПАУЗА"
                 : arrived
-                  ? "ОСТАНОВКА · 25 СЕКУНД НА ЧТЕНИЕ"
+                  ? "ОСТАНОВКА · 21 СЕКУНДА НА ЧТЕНИЕ"
                   : "ПЕРЕХОДИМ К ЭКСПОНАТУ"}
             </span>
-            <h2>{tourExhibit.title}</h2>
+            <HallTitle
+              place={halls.find((h) => h.id === tourExhibit.hall)!}
+              as="h2"
+            />
+            <h3 className="tour-exhibit-title">{tourExhibit.title}</h3>
             <p>{tourExhibit.caption}</p>
             {arrived && (
               <div className="tour-text">
@@ -640,7 +639,7 @@ export default function App() {
           <button
             className="icon-button"
             aria-label="Вернуться в атриум"
-            title="В атриум"
+            title={`${atrium.names.kk} / ${atrium.names.ru}`}
             onClick={() => navigate("atrium")}
             disabled={failed}
           >
@@ -674,7 +673,7 @@ export default function App() {
           </span>
         </button>
         <div className="room-buttons">
-          {halls.map((h, i) => (
+          {halls.map((h) => (
             <button
               key={h.id}
               className={`room-button ${room === h.id && !intro ? "current" : ""}`}
@@ -684,21 +683,20 @@ export default function App() {
                   : navigate(h.id)
               }
             >
-              <span className="room-number">
-                {stamps.includes(h.id) ? (
-                  <Check size={17} />
-                ) : (
-                  String(i + 1).padStart(2, "0")
-                )}
-              </span>
-              <span>{h.short}</span>
-              <ArrowUpRight size={14} />
+              <HallTitle place={h} />
+              {stamps.includes(h.id) ? (
+                <Check size={16} aria-label="Зал исследован" />
+              ) : (
+                <ArrowUpRight size={14} />
+              )}
             </button>
           ))}
         </div>
       </section>
       <footer className="footer">
-        <span>РЕСПУБЛИКАНСКИЙ ЧЕЛЛЕНДЖ · КО ДНЮ РЕСПУБЛИКИ</span>
+        <button className="school-credit" onClick={() => showPanel("about")}>
+          {exhibition.organizationShort}
+        </button>
         <button onClick={() => showPanel("sources")}>
           Источники и материалы <ArrowUpRight size={13} />
         </button>
@@ -728,20 +726,43 @@ export default function App() {
                 <ChevronLeft size={16} />В каталог
               </button>
               <span className="exhibit-caption">{exhibit.caption}</span>
-              {exhibit.model ? (
-                <SceneBoundary
-                  fallback={
-                    <div className="empty-state">
-                      Объёмный просмотр недоступен. Описание экспоната — ниже.
-                    </div>
+              <figure className="exhibit-figure">
+                <SafeImage
+                  exhibit={exhibit}
+                  retryToken={imageRetry}
+                  onFailure={() => onImageStatus(exhibit.id, "error")}
+                />
+                {exhibit.imageCaption && (
+                  <figcaption>{exhibit.imageCaption}</figcaption>
+                )}
+              </figure>
+              {imageErrors.includes(exhibit.id) && (
+                <button className="secondary image-retry" onClick={retryImages}>
+                  Повторить загрузку изображений
+                </button>
+              )}
+              {exhibit.model && (
+                <details
+                  className="model-details"
+                  onToggle={(event) =>
+                    setModelExpanded(event.currentTarget.open)
                   }
                 >
-                  <Suspense fallback={<p>Загружаем объёмный экспонат…</p>}>
-                    <ModelViewer kind={exhibit.model} />
-                  </Suspense>
-                </SceneBoundary>
-              ) : (
-                <SafeImage exhibit={exhibit} />
+                  <summary>Рассмотреть объёмную модель</summary>
+                  <SceneBoundary
+                    fallback={
+                      <div className="empty-state">
+                        Объёмный просмотр недоступен. Описание экспоната — ниже.
+                      </div>
+                    }
+                  >
+                    {modelExpanded && (
+                      <Suspense fallback={<p>Загружаем объёмный экспонат…</p>}>
+                        <ModelViewer kind={exhibit.model} />
+                      </Suspense>
+                    )}
+                  </SceneBoundary>
+                </details>
               )}
               <div className="prose">
                 {exhibit.paragraphs.map((p) => (
@@ -767,8 +788,7 @@ export default function App() {
                 >
                   <label htmlFor="wish">Моё пожелание Казахстану</label>
                   <p id="wish-privacy" className="fineprint">
-                    Хранится только в этом браузере на вашем устройстве. Другие
-                    посетители его не увидят.
+                    Ваше пожелание видно только вам.
                   </p>
                   <textarea
                     id="wish"
@@ -791,7 +811,7 @@ export default function App() {
                     <p role="status">
                       {storageError
                         ? "Сохранено только на время этого посещения."
-                        : "Пожелание сохранено на этом устройстве."}
+                        : "Ваше пожелание сохранено."}
                     </p>
                   )}
                 </form>
@@ -821,29 +841,18 @@ export default function App() {
                 </div>
               </div>
               <div className="stamp-grid">
-                {halls.map((h, i) => {
-                  const empty = hallExhibits(h.id).length === 0,
-                    done = stamps.includes(h.id);
+                {halls.map((h) => {
+                  const done = stamps.includes(h.id);
                   return (
                     <div
                       key={h.id}
                       className={`stamp ${done ? "collected" : ""}`}
                     >
-                      <span>
-                        {done ? (
-                          <Check size={25} />
-                        ) : (
-                          String(i + 1).padStart(2, "0")
-                        )}
+                      <span className="stamp-icon" aria-hidden="true">
+                        {done ? <Check size={25} /> : <Compass size={25} />}
                       </span>
-                      <h3>{h.short}</h3>
-                      <p>
-                        {empty
-                          ? "Ожидает материалов"
-                          : done
-                            ? "Зал исследован"
-                            : "Ждёт открытия"}
-                      </p>
+                      <HallTitle place={h} as="h3" />
+                      <p>{done ? "Зал исследован" : "Ждёт открытия"}</p>
                       {progress.answers[h.id] !== undefined && (
                         <small>Вопрос решён ✓</small>
                       )}
@@ -852,9 +861,8 @@ export default function App() {
                 })}
               </div>
               <p className="fineprint">
-                Переход в зал сам по себе не даёт отметку. Региональный зал
-                будет доступен после добавления материалов. Прогресс и ответы
-                хранятся на этом устройстве.
+                Читайте истории экспонатов и собирайте отметки о путешествии по
+                всем шести залам.
               </p>
               {reset ? (
                 <div className="confirm-reset">
@@ -894,27 +902,20 @@ export default function App() {
                   onClick={() => navigate("atrium")}
                 >
                   <SunMark />
-                  <strong>Атриум</strong>
+                  <HallTitle place={atrium} as="h3" />
                   <small>Начало путешествия</small>
                 </button>
-                {halls.map((h, i) => (
+                {halls.map((h) => (
                   <button
                     key={h.id}
-                    className="map-room"
-                    style={{
-                      gridColumn: h.side === -1 ? 1 : 3,
-                      gridRow: Math.floor(i / 2) + 1,
-                    }}
+                    className={`map-room ${h.side === -1 ? "left" : "right"}`}
                     onClick={() =>
                       failed
                         ? (setFilter(h.id), showPanel("catalog"))
                         : navigate(h.id)
                     }
                   >
-                    <span className="eyebrow">
-                      ЗАЛ 0{i + 1} · {h.kz}
-                    </span>
-                    <h3>{h.title}</h3>
+                    <HallTitle place={h} as="h3" />
                     <p>{h.description}</p>
                     <ArrowRight size={17} />
                   </button>
@@ -926,33 +927,24 @@ export default function App() {
             <div className="prose">
               <div className="about-mark">
                 <SunMark />
-                <h3>{exhibition.title}</h3>
-                <p>{exhibition.subtitle}</p>
+                <div>
+                  <h3>{exhibition.title}</h3>
+                  <p>{exhibition.subtitle}</p>
+                </div>
               </div>
-              <p>
-                Виртуальная выставка ко Дню Республики для школьников,
-                педагогов, библиотекарей и всех, кому интересен Казахстан.
-              </p>
-              <p>
-                25 октября мы вспоминаем принятие Декларации о государственном
-                суверенитете в 1990 году. Пройдите от исторических событий к
-                культуре, людям и собственным идеям о будущем.
-              </p>
               <dl className="credits-list">
-                <dt>Авторы</dt>
-                <dd>
-                  {exhibition.authors.join(", ") || "Сведения ещё не добавлены"}
-                </dd>
+                <dt>Автор выставки</dt>
+                <dd className="author-name">{exhibition.authors.join(", ")}</dd>
+                <dt>Педагог</dt>
+                <dd>{exhibition.authorRole}</dd>
                 <dt>Образовательная организация</dt>
-                <dd>
-                  {exhibition.organization || "Сведения ещё не добавлены"}
-                </dd>
+                <dd>{exhibition.organization}</dd>
                 <dt>Регион</dt>
-                <dd>{exhibition.region || "Ожидает заполнения"}</dd>
+                <dd>{exhibition.region}</dd>
               </dl>
-              <p className="fineprint">
-                Экспозиция учебная. Архитектура и объёмные модели — авторские
-                стилизации. Подтверждённые источники указаны в карточках.
+              <p>
+                Выставка ко Дню Республики для всех, кому интересны история,
+                культура и будущее Казахстана.
               </p>
               <button
                 className="secondary"
@@ -965,9 +957,8 @@ export default function App() {
           {panel === "sources" && (
             <>
               <p className="lead">
-                Исторические сведения сверены с официальными ресурсами,
-                материалами ЮНЕСКО и университетского музея. Проверка: 30
-                сентября 2026.
+                Узнайте больше об истории и культуре Казахстана: архивы,
+                музейные коллекции и материалы ЮНЕСКО.
               </p>
               <div className="sources-list">
                 {sources.map((s) => (
@@ -977,16 +968,19 @@ export default function App() {
                       <ArrowUpRight size={16} />
                     </a>
                     {s.note && <p>{s.note}</p>}
+                    {s.licenseUrl && (
+                      <a
+                        className="license-link"
+                        href={s.licenseUrl}
+                        target="_blank"
+                        rel="noreferrer"
+                      >
+                        Условия лицензии <ArrowUpRight size={13} />
+                      </a>
+                    )}
                   </div>
                 ))}
               </div>
-              <p className="fineprint">
-                Фотографии и символы сохранены локально; изображения показаны с
-                исходными пропорциями. 3D-модели домбры и юрты, орнамент и
-                архитектура созданы для этой выставки. Модельные иллюстрации не
-                являются точными реконструкциями. Аудиозапись гимна в эту версию
-                не включена; официальный материал доступен по ссылке.
-              </p>
             </>
           )}
           {(panel === "help" || panel === "menu") && (
@@ -1050,7 +1044,7 @@ export default function App() {
                   className="secondary"
                   onClick={() => showPanel("about")}
                 >
-                  О выставке
+                  Об авторе
                 </button>
                 {tour && (
                   <button
@@ -1076,8 +1070,8 @@ export default function App() {
                 <legend>Качество 3D</legend>
                 {[
                   ["auto", "Авто", "Учитывает размер экрана"],
-                  ["low", "Низкое", "Без теней, меньше нагрузка"],
-                  ["high", "Высокое", "Мягкие тени и сглаживание"],
+                  ["low", "Низкое", "Быстрее на слабых устройствах"],
+                  ["high", "Высокое", "Больше деталей"],
                 ].map(([v, t, d]) => (
                   <label key={v}>
                     <input
@@ -1110,7 +1104,7 @@ export default function App() {
       )}
       <span className="sr-only" role="status">
         {ready ? "Музей загружен" : ""}
-        {activeHall ? `. ${activeHall.title}` : ""}
+        {activeHall ? `. ${activeHall.names.kk}. ${activeHall.names.ru}` : ""}
       </span>
     </div>
   );
