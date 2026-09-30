@@ -1,6 +1,7 @@
 import { chromium } from "@playwright/test";
 import { mkdir, writeFile } from "node:fs/promises";
 const out = process.env.REVIEW_OUT || "artifacts/review";
+const url = process.env.REVIEW_URL || "http://127.0.0.1:5173/";
 await mkdir(out, { recursive: true });
 const browser = await chromium.launch({
   args: ["--use-angle=swiftshader", "--enable-webgl", "--ignore-gpu-blocklist"],
@@ -18,7 +19,7 @@ page.on("response", (response) => {
   if (response.status() >= 400)
     failures.push(`${response.status()} ${response.url()}`);
 });
-await page.goto("http://127.0.0.1:5173/");
+await page.goto(url);
 await page
   .getByRole("button", { name: "Войти в музей", exact: true })
   .waitFor();
