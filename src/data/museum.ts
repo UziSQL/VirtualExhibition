@@ -51,6 +51,13 @@ export type Hall = NamedPlace & {
 export const sources: Source[] = [
   ...photoSources,
   {
+    id: "background-music",
+    label: "Фоновая музыка · Moonlight — Scott Buckley",
+    url: "https://www.scottbuckley.com.au/library/moonlight/",
+    note: "‘Moonlight’ by Scott Buckley — released under CC-BY 4.0. www.scottbuckley.com.au. Фортепиано и струнные, без слов.",
+    licenseUrl: "https://creativecommons.org/licenses/by/4.0/",
+  },
+  {
     id: "history",
     label: "Gov.kz · Хронология независимости",
     url: "https://www.gov.kz/memleket/entities/culture-kokshetau/press/news/details/1125430?lang=ru",

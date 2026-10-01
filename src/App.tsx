@@ -25,11 +25,14 @@ import {
   RotateCcw,
   Settings2,
   Ticket,
+  Volume2,
+  VolumeX,
   X,
 } from "lucide-react";
 import { exhibition } from "./data/config";
 import { atrium, exhibits, halls, sources, type HallId } from "./data/museum";
 import { HallTitle } from "./components/HallTitle";
+import { useBackgroundMusic } from "./lib/useBackgroundMusic";
 import {
   advanceTour,
   emptyProgress,
@@ -102,6 +105,21 @@ function SunMark() {
   );
 }
 export default function App() {
+  const music = useBackgroundMusic();
+  const musicLabel =
+    music.status === "error"
+      ? "Повторить загрузку фоновой музыки"
+      : music.enabled
+        ? "Выключить фоновую музыку"
+        : "Включить фоновую музыку";
+  const musicNotice =
+    music.status === "blocked"
+      ? "Браузер приостановил музыку. Нажмите кнопку звука, чтобы включить её."
+      : music.status === "error"
+        ? "Не удалось загрузить музыку. Нажмите кнопку звука, чтобы повторить."
+        : music.status === "suspended"
+          ? "Фоновая музыка приостановлена на время воспроизведения экспоната."
+          : "";
   const [imageRetry, setImageRetry] = useState(0);
   const [imageErrors, setImageErrors] = useState<string[]>([]);
   const onImageStatus = useCallback((id: string, status: ImageStatus) => {
@@ -191,6 +209,7 @@ export default function App() {
     setReset(false);
   };
   const navigate = (id: HallId | "atrium") => {
+    music.enter();
     setIntro(false);
     setTour(null);
     setWalking(true);
@@ -199,6 +218,7 @@ export default function App() {
     setNavigation((n) => ({ id: n.id + 1, room: id }));
   };
   const startWalk = () => {
+    music.enter();
     setIntro(false);
     setTour(null);
     setWalking(true);
@@ -206,6 +226,7 @@ export default function App() {
     setNavigation((n) => ({ id: n.id + 1, room: "atrium" }));
   };
   const startTour = () => {
+    music.enter();
     unlock();
     setIntro(false);
     setWalking(false);
@@ -350,6 +371,14 @@ export default function App() {
       )[panel || ""];
   return (
     <div className={`app ${intro ? "is-intro" : ""}`}>
+      <audio
+        ref={music.audioRef}
+        data-background-music
+        src={`${import.meta.env.BASE_URL}audio/moonlight.mp3`}
+        loop
+        preload="none"
+        hidden
+      />
       <header className="topbar">
         <button
           className="brand"
@@ -661,6 +690,18 @@ export default function App() {
           >
             <Settings2 size={19} />
           </button>
+          <button
+            className="icon-button"
+            aria-label={musicLabel}
+            aria-pressed={music.enabled}
+            title={musicNotice || musicLabel}
+            onClick={music.toggle}
+          >
+            {music.enabled ? <Volume2 size={19} /> : <VolumeX size={19} />}
+          </button>
+          <span className="sr-only" role="status">
+            {musicNotice}
+          </span>
         </div>
       </main>
       <section className="rooms-bar" aria-label="Быстрый переход по залам">
@@ -933,10 +974,8 @@ export default function App() {
                 </div>
               </div>
               <dl className="credits-list">
-                <dt>Автор выставки</dt>
+                <dt>Автор:</dt>
                 <dd className="author-name">{exhibition.authors.join(", ")}</dd>
-                <dt>Педагог</dt>
-                <dd>{exhibition.authorRole}</dd>
                 <dt>Образовательная организация</dt>
                 <dd>{exhibition.organization}</dd>
                 <dt>Регион</dt>

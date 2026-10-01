@@ -52,11 +52,12 @@ test("Автор, полное название школы, лицензии и 
   await page.goto("/");
   await page.locator(".school-credit").click();
   await expect(page.getByRole("dialog")).toContainText("Об авторе выставки");
-  await expect(page.locator(".author-name")).toHaveText("Шайхина А.У.");
-  await expect(page.locator(".credits-list")).toContainText(
-    "Учитель казахского языка и литературы.",
+  await expect(page.locator(".author-name")).toHaveText('6 "А" класс.');
+  await expect(page.locator(".credits-list dt").first()).toHaveText("Автор:");
+  await expect(page.getByRole("dialog")).not.toContainText(
+    /Шайхина|Учитель|Педагог/,
   );
-  const organization = page.locator(".credits-list dd").nth(2);
+  const organization = page.locator(".credits-list dd").nth(1);
   await expect(organization).toHaveText(
     "Коммунальное государственное учреждение «Общеобразовательная школа № 6» отдела образования города Шахтинска управления образования Карагандинской области.",
   );
@@ -78,7 +79,9 @@ test("Автор, полное название школы, лицензии и 
     .getByRole("button", { name: "Источники и материалы", exact: true })
     .last()
     .click();
-  await expect(page.locator(".sources-list .license-link")).toHaveCount(8);
+  await expect(page.locator(".sources-list .license-link")).toHaveCount(9);
+  await expect(page.locator(".sources-list")).toContainText("Moonlight");
+  await expect(page.locator(".sources-list")).toContainText("Scott Buckley");
   await expect(page.getByRole("dialog")).not.toContainText(
     /сохранены локально|в эту версию|React|Three\.js|WebGL|localStorage|Авторы выставки ещё/,
   );
